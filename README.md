@@ -109,7 +109,3 @@ The default message broker is RabbitMQ. An optional Kafka producer/consumer abst
 ## License
 
 MIT (or your choice). Use only for research and non-diagnostic purposes; comply with local regulations and dataset licenses.
-
-## Resume bullet
-
-> Built a distributed AI platform for early hematologic cancer risk detection using time-series CBC analysis with FastAPI, RabbitMQ, PyTorch/scikit-learn, TimescaleDB, Celery workers, and Docker.
