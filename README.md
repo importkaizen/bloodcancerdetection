@@ -164,10 +164,6 @@ The default broker is RabbitMQ. Kafka producer/consumer abstractions exist in `h
 
 ## License
 
----
-
-## License
-
 MIT. Use only for research and non-diagnostic purposes. Comply with local regulations and dataset licenses.
 
 ---
