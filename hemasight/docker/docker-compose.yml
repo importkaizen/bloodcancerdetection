@@ -1,0 +1,83 @@
+services:
+  postgres:
+    image: timescale/timescaledb:latest-pg15
+    environment:
+      POSTGRES_USER: hemasight
+      POSTGRES_PASSWORD: hemasight
+      POSTGRES_DB: hemasight
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hemasight -d hemasight"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ../..
+      dockerfile: hemasight/docker/Dockerfile.api
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://hemasight:hemasight@postgres:5432/hemasight
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  workers:
+    build:
+      context: ../..
+      dockerfile: hemasight/docker/Dockerfile.workers
+    environment:
+      DATABASE_URL: postgresql://hemasight:hemasight@postgres:5432/hemasight
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+
+  consumer:
+    build:
+      context: ../..
+      dockerfile: hemasight/docker/Dockerfile.workers
+    command: python -c "from hemasight.data_pipeline.consumer import run_consumer; run_consumer()"
+    environment:
+      DATABASE_URL: postgresql://hemasight:hemasight@postgres:5432/hemasight
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
+      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672/
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+  frontend:
+    build:
+      context: ../..
+      dockerfile: hemasight/docker/Dockerfile.dashboard
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+volumes:
+  pgdata: {}

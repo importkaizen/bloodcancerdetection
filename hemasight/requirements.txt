@@ -1,0 +1,2 @@
+# API and shared deps; full stack in pyproject.toml
+-r pyproject.toml

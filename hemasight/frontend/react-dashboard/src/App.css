@@ -1,0 +1,71 @@
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.app header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+}
+
+.app header h1 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.75rem;
+}
+
+.tagline {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+main {
+  text-align: left;
+}
+
+.patient-list h2,
+.patient-detail h2 {
+  margin-top: 0;
+}
+
+.patient-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.patient-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.patient-list a {
+  color: #646cff;
+  text-decoration: none;
+}
+
+.patient-list a:hover {
+  text-decoration: underline;
+}
+
+.muted {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.patient-detail p {
+  margin: 0.5rem 0;
+}
+
+.chart-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #fafafa;
+  border-radius: 8px;
+}
+
+.chart-section h3 {
+  margin-top: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
