@@ -1,0 +1,627 @@
+{
+  "status": "completed",
+  "started_at_utc": "2026-09-13T18:17:42.699444+00:00",
+  "dataset": {
+    "filename": "features.csv",
+    "sha256": "1d4a7b1054ad38fb3989a5f31cfd6a6ff9b16efcebfd612f981e7b09d4efb88e",
+    "rows": 446663
+  },
+  "git_revision": "dd9d01546924e71e8179912887f04934b90441b9",
+  "versions": {
+    "python": "3.11.16",
+    "numpy": "2.4.6",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "joblib": "1.6.0",
+    "xgboost": "3.2.0"
+  },
+  "seed": 42,
+  "source_code": {
+    "files_sha256": {
+      "benchmark.py": "f706e32e6a535587677ec352490e732f0c4247ef4cc7355722f94f3c7954d2dc",
+      "schema.py": "b2b172f0cff8442ed8c1bead9610d6f443d729970ed62ad617ad8bb873ffe8be",
+      "leukoalert.py": "859b67dd93017baf0c7fc0ade912732d1b452114b7d5c89601b74071a4632a7e"
+    },
+    "git_dirty": true
+  },
+  "preparation_provenance": {
+    "schema_version": "cbc_screening_v1",
+    "source_url": "https://data.mendeley.com/datasets/vc7kwnyppz/1",
+    "source_doi": "10.17632/vc7kwnyppz.1",
+    "source_license": "CC BY 4.0",
+    "source_archive_sha256": "3c09b869867cc1b7298943ad332d7d60515b9c3dba14c06e5e3338e67318ed05",
+    "prepared_csv_sha256": "1d4a7b1054ad38fb3989a5f31cfd6a6ff9b16efcebfd612f981e7b09d4efb88e",
+    "verified_official_archive": true,
+    "records": 446663,
+    "published_record_total": 446558,
+    "difference_from_published_total": 105,
+    "feature_sets": {
+      "basic_cbc": [
+        "wbc",
+        "rbc",
+        "platelets",
+        "hemoglobin",
+        "lymphocytes"
+      ],
+      "expanded_cbc": [
+        "wbc",
+        "rbc",
+        "platelets",
+        "hemoglobin",
+        "lymphocytes",
+        "hematocrit",
+        "mcv",
+        "mch",
+        "mchc",
+        "rdw_cv",
+        "neutrophils",
+        "monocytes",
+        "eosinophils",
+        "basophils",
+        "lymphocytes_absolute"
+      ]
+    },
+    "column_mapping": {
+      "wbc": {
+        "source": "WBC(10^9/L)",
+        "multiplier": 1.0,
+        "unit": "10^9/L"
+      },
+      "rbc": {
+        "source": "RBC(10^12/L)",
+        "multiplier": 1.0,
+        "unit": "10^12/L"
+      },
+      "platelets": {
+        "source": "PLT(10^9/L)",
+        "multiplier": 1.0,
+        "unit": "10^9/L"
+      },
+      "hemoglobin": {
+        "source": "HGB(g/L)",
+        "multiplier": 0.1,
+        "unit": "g/dL"
+      },
+      "lymphocytes": {
+        "source": "LYMPH%(%)",
+        "multiplier": 1.0,
+        "unit": "%"
+      },
+      "hematocrit": {
+        "source": "HCT(%)",
+        "multiplier": 1.0,
+        "unit": "%"
+      },
+      "mcv": {
+        "source": "MCV(fL)",
+        "multiplier": 1.0,
+        "unit": "fL"
+      },
+      "mch": {
+        "source": "MCH(pg)",
+        "multiplier": 1.0,
+        "unit": "pg"
+      },
+      "mchc": {
+        "source": "MCHC(g/L)",
+        "multiplier": 0.1,
+        "unit": "g/dL"
+      },
+      "rdw_cv": {
+        "source": "RDW-CV(%)",
+        "multiplier": 1.0,
+        "unit": "%"
+      },
+      "neutrophils": {
+        "source": "NEUT#(10^9/L)",
+        "multiplier": 1.0,
+        "unit": "10^9/L"
+      },
+      "monocytes": {
+        "source": "MONO#(10^9/L)",
+        "multiplier": 1.0,
+        "unit": "10^9/L"
+      },
+      "eosinophils": {
+        "source": "EO#(10^9/L)",
+        "multiplier": 1.0,
+        "unit": "10^9/L"
+      },
+      "basophils": {
+        "source": "BASO#(10^9/L)",
+        "multiplier": 1.0,
+        "unit": "10^9/L"
+      },
+      "lymphocytes_absolute": {
+        "source": "LYMPH#(10^9/L)",
+        "multiplier": 1.0,
+        "unit": "10^9/L"
+      }
+    },
+    "limitations": [
+      "Screening labels describe the released record; they do not define future cancer incidence.",
+      "No explicit patient identifier or test/diagnosis dates are released in these CSVs.",
+      "Sample IDs are not patient IDs; patient overlap and repeated-measure independence are unverified.",
+      "The archive contains 446663 binary-task records versus 446558 reported by the article (difference 105).",
+      "The binary CSV schema has 76 columns; this benchmark uses explicit 5/15-feature sets, not a reproduction of the paper's 72-feature model.",
+      "Site labels come from filenames. The real_world filename is not a newly identified hospital."
+    ],
+    "processing": "Unit conversion and audited missing/invalid-number parsing only; no imputation, scaling, resampling, or clinical range filtering.",
+    "preparation_manifest_sha256": "931c0f2d435ffc9e68bbc58ba5f610795f22a13efab16cd181729caa02a229f3"
+  },
+  "feature_sets": {
+    "basic_cbc": [
+      "wbc",
+      "rbc",
+      "platelets",
+      "hemoglobin",
+      "lymphocytes"
+    ],
+    "expanded_cbc": [
+      "wbc",
+      "rbc",
+      "platelets",
+      "hemoglobin",
+      "lymphocytes",
+      "hematocrit",
+      "mcv",
+      "mch",
+      "mchc",
+      "rdw_cv",
+      "neutrophils",
+      "monocytes",
+      "eosinophils",
+      "basophils",
+      "lymphocytes_absolute"
+    ]
+  },
+  "excluded_metadata_columns": [
+    "sample_id",
+    "site",
+    "cohort",
+    "target"
+  ],
+  "models": [
+    "prevalence",
+    "logistic",
+    "rf",
+    "xgboost"
+  ],
+  "target_specificity": 0.95,
+  "fit_cohort": "development",
+  "threshold_selection_cohort": "validation",
+  "evaluated_cohorts": [
+    "validation",
+    "external",
+    "test"
+  ],
+  "evaluate_holdouts": true,
+  "evaluation_note": "Research screening benchmark only. The public release has sample identifiers but no patient identifiers or diagnosis dates. Repeated patients and patient overlap across cohorts cannot be verified. Results do not establish early detection, clinical utility, or patient-disjoint generalization. Thresholds are selected on validation records; validation performance is therefore not an unbiased estimate for the selected operating point. External/test evaluation must be reserved until the model configuration and threshold-selection procedure are frozen.",
+  "cohort_counts": {
+    "development": {
+      "n": 26922,
+      "n_positive": 8974,
+      "n_negative": 17948
+    },
+    "external": {
+      "n": 149648,
+      "n_positive": 5789,
+      "n_negative": 143859
+    },
+    "test": {
+      "n": 58481,
+      "n_positive": 2290,
+      "n_negative": 56191
+    },
+    "validation": {
+      "n": 211612,
+      "n_positive": 7818,
+      "n_negative": 203794
+    }
+  },
+  "experiments": [
+    {
+      "feature_set": "basic_cbc",
+      "model": "prevalence",
+      "threshold": 0.33333333333333337,
+      "model_bundle": "models/basic_cbc__prevalence.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "classifier": {
+          "constant": null,
+          "random_state": null,
+          "strategy": "prior"
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0
+      }
+    },
+    {
+      "feature_set": "basic_cbc",
+      "model": "logistic",
+      "threshold": 0.6378366611633522,
+      "model_bundle": "models/basic_cbc__logistic.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "scaler": {
+          "copy": true,
+          "with_mean": true,
+          "with_std": true
+        },
+        "classifier": {
+          "C": 1.0,
+          "class_weight": null,
+          "dual": false,
+          "fit_intercept": true,
+          "intercept_scaling": 1,
+          "l1_ratio": 0.0,
+          "max_iter": 3000,
+          "n_jobs": null,
+          "penalty": "deprecated",
+          "random_state": 42,
+          "solver": "lbfgs",
+          "tol": 0.0001,
+          "verbose": 0,
+          "warm_start": false
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0
+      }
+    },
+    {
+      "feature_set": "basic_cbc",
+      "model": "rf",
+      "threshold": 0.6399350649350647,
+      "model_bundle": "models/basic_cbc__rf.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "classifier": {
+          "bootstrap": true,
+          "ccp_alpha": 0.0,
+          "class_weight": null,
+          "criterion": "gini",
+          "max_depth": null,
+          "max_features": "sqrt",
+          "max_leaf_nodes": null,
+          "max_samples": null,
+          "min_impurity_decrease": 0.0,
+          "min_samples_leaf": 3,
+          "min_samples_split": 2,
+          "min_weight_fraction_leaf": 0.0,
+          "monotonic_cst": null,
+          "n_estimators": 250,
+          "n_jobs": -1,
+          "oob_score": false,
+          "random_state": 42,
+          "verbose": 0,
+          "warm_start": false
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0
+      }
+    },
+    {
+      "feature_set": "basic_cbc",
+      "model": "xgboost",
+      "threshold": 0.634159028530121,
+      "model_bundle": "models/basic_cbc__xgboost.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "classifier": {
+          "objective": "binary:logistic",
+          "base_score": null,
+          "booster": null,
+          "callbacks": null,
+          "colsample_bylevel": null,
+          "colsample_bynode": null,
+          "colsample_bytree": 1.0,
+          "device": null,
+          "early_stopping_rounds": null,
+          "enable_categorical": false,
+          "eval_metric": "logloss",
+          "feature_types": null,
+          "feature_weights": null,
+          "gamma": null,
+          "grow_policy": null,
+          "importance_type": null,
+          "interaction_constraints": null,
+          "learning_rate": 0.05,
+          "max_bin": null,
+          "max_cat_threshold": null,
+          "max_cat_to_onehot": null,
+          "max_delta_step": null,
+          "max_depth": 3,
+          "max_leaves": null,
+          "min_child_weight": null,
+          "missing": null,
+          "monotone_constraints": null,
+          "multi_strategy": null,
+          "n_estimators": 300,
+          "n_jobs": -1,
+          "num_parallel_tree": null,
+          "random_state": 42,
+          "reg_alpha": null,
+          "reg_lambda": null,
+          "sampling_method": null,
+          "scale_pos_weight": null,
+          "subsample": 1.0,
+          "tree_method": "hist",
+          "validate_parameters": null,
+          "verbosity": null
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0
+      }
+    },
+    {
+      "feature_set": "expanded_cbc",
+      "model": "prevalence",
+      "threshold": 0.33333333333333337,
+      "model_bundle": "models/expanded_cbc__prevalence.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "classifier": {
+          "constant": null,
+          "random_state": null,
+          "strategy": "prior"
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0,
+        "hematocrit": 0,
+        "mcv": 0,
+        "mch": 0,
+        "mchc": 0,
+        "rdw_cv": 0,
+        "neutrophils": 0,
+        "monocytes": 0,
+        "eosinophils": 0,
+        "basophils": 0,
+        "lymphocytes_absolute": 0
+      }
+    },
+    {
+      "feature_set": "expanded_cbc",
+      "model": "logistic",
+      "threshold": 0.6636782788159487,
+      "model_bundle": "models/expanded_cbc__logistic.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "scaler": {
+          "copy": true,
+          "with_mean": true,
+          "with_std": true
+        },
+        "classifier": {
+          "C": 1.0,
+          "class_weight": null,
+          "dual": false,
+          "fit_intercept": true,
+          "intercept_scaling": 1,
+          "l1_ratio": 0.0,
+          "max_iter": 3000,
+          "n_jobs": null,
+          "penalty": "deprecated",
+          "random_state": 42,
+          "solver": "lbfgs",
+          "tol": 0.0001,
+          "verbose": 0,
+          "warm_start": false
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0,
+        "hematocrit": 0,
+        "mcv": 0,
+        "mch": 0,
+        "mchc": 0,
+        "rdw_cv": 0,
+        "neutrophils": 0,
+        "monocytes": 0,
+        "eosinophils": 0,
+        "basophils": 0,
+        "lymphocytes_absolute": 0
+      }
+    },
+    {
+      "feature_set": "expanded_cbc",
+      "model": "rf",
+      "threshold": 0.5625873015873015,
+      "model_bundle": "models/expanded_cbc__rf.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "classifier": {
+          "bootstrap": true,
+          "ccp_alpha": 0.0,
+          "class_weight": null,
+          "criterion": "gini",
+          "max_depth": null,
+          "max_features": "sqrt",
+          "max_leaf_nodes": null,
+          "max_samples": null,
+          "min_impurity_decrease": 0.0,
+          "min_samples_leaf": 3,
+          "min_samples_split": 2,
+          "min_weight_fraction_leaf": 0.0,
+          "monotonic_cst": null,
+          "n_estimators": 250,
+          "n_jobs": -1,
+          "oob_score": false,
+          "random_state": 42,
+          "verbose": 0,
+          "warm_start": false
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0,
+        "hematocrit": 0,
+        "mcv": 0,
+        "mch": 0,
+        "mchc": 0,
+        "rdw_cv": 0,
+        "neutrophils": 0,
+        "monocytes": 0,
+        "eosinophils": 0,
+        "basophils": 0,
+        "lymphocytes_absolute": 0
+      }
+    },
+    {
+      "feature_set": "expanded_cbc",
+      "model": "xgboost",
+      "threshold": 0.5760638117790223,
+      "model_bundle": "models/expanded_cbc__xgboost.joblib",
+      "parameters": {
+        "imputer": {
+          "add_indicator": false,
+          "copy": true,
+          "fill_value": null,
+          "keep_empty_features": false,
+          "missing_values": null,
+          "strategy": "median"
+        },
+        "classifier": {
+          "objective": "binary:logistic",
+          "base_score": null,
+          "booster": null,
+          "callbacks": null,
+          "colsample_bylevel": null,
+          "colsample_bynode": null,
+          "colsample_bytree": 1.0,
+          "device": null,
+          "early_stopping_rounds": null,
+          "enable_categorical": false,
+          "eval_metric": "logloss",
+          "feature_types": null,
+          "feature_weights": null,
+          "gamma": null,
+          "grow_policy": null,
+          "importance_type": null,
+          "interaction_constraints": null,
+          "learning_rate": 0.05,
+          "max_bin": null,
+          "max_cat_threshold": null,
+          "max_cat_to_onehot": null,
+          "max_delta_step": null,
+          "max_depth": 3,
+          "max_leaves": null,
+          "min_child_weight": null,
+          "missing": null,
+          "monotone_constraints": null,
+          "multi_strategy": null,
+          "n_estimators": 300,
+          "n_jobs": -1,
+          "num_parallel_tree": null,
+          "random_state": 42,
+          "reg_alpha": null,
+          "reg_lambda": null,
+          "sampling_method": null,
+          "scale_pos_weight": null,
+          "subsample": 1.0,
+          "tree_method": "hist",
+          "validate_parameters": null,
+          "verbosity": null
+        }
+      },
+      "training_missing_counts": {
+        "wbc": 0,
+        "rbc": 0,
+        "platelets": 0,
+        "hemoglobin": 0,
+        "lymphocytes": 0,
+        "hematocrit": 0,
+        "mcv": 0,
+        "mch": 0,
+        "mchc": 0,
+        "rdw_cv": 0,
+        "neutrophils": 0,
+        "monocytes": 0,
+        "eosinophils": 0,
+        "basophils": 0,
+        "lymphocytes_absolute": 0
+      }
+    }
+  ],
+  "completed_at_utc": "2026-09-13T18:17:53.242358+00:00"
+}

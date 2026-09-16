@@ -23,6 +23,7 @@ ML_MODELS_DIR = Path(os.getenv("ML_MODELS_DIR", str(HEMASIGHT_ROOT / "ml" / "mod
 RISK_MODEL_PATH = ML_MODELS_DIR / "risk_model.pkl"
 SCALER_PATH = ML_MODELS_DIR / "scaler.pkl"
 MODEL_CONFIG_PATH = ML_MODELS_DIR / "config.json"
+RESEARCH_REPORTS_DIR = Path(os.getenv("RESEARCH_REPORTS_DIR", str(HEMASIGHT_ROOT.parent / "docs" / "results")))
 
 # API
 API_HOST = os.getenv("API_HOST", "0.0.0.0")

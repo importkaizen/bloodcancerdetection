@@ -7,7 +7,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from hemasight.config import ML_MODELS_DIR, MODEL_CONFIG_PATH, RISK_MODEL_PATH, SCALER_PATH
+from hemasight.config import ML_MODELS_DIR
 
 FEATURE_COLUMNS = [
     "wbc", "rbc", "platelets", "hemoglobin", "lymphocytes",
@@ -15,6 +15,8 @@ FEATURE_COLUMNS = [
     "wbc_rolling_avg", "rbc_rolling_avg", "platelets_rolling_avg", "hemoglobin_rolling_avg",
 ]
 LSTM_MODEL_PATH = ML_MODELS_DIR / "risk_lstm.pt"
+LSTM_SCALER_PATH = ML_MODELS_DIR / "lstm_scaler.pkl"
+LSTM_CONFIG_PATH = ML_MODELS_DIR / "lstm_config.json"
 SEQ_LEN_KEY = "seq_len"
 HIDDEN_KEY = "hidden_size"
 
@@ -65,9 +67,9 @@ def train_lstm(
         loss.backward()
         optim.step()
     torch.save({"state_dict": model.state_dict(), "n_features": n_features, "hidden_size": hidden_size, "seq_len": seq_len_actual}, LSTM_MODEL_PATH)
-    joblib.dump(scaler, SCALER_PATH)
+    joblib.dump(scaler, LSTM_SCALER_PATH)
     config = {"feature_columns": FEATURE_COLUMNS, "model_version": "lstm_v1", "model_type": "lstm", "thresholds": {"LOW": 0.33, "MEDIUM": 0.66}, "seq_len": seq_len_actual}
-    with open(MODEL_CONFIG_PATH, "w") as f:
+    with open(LSTM_CONFIG_PATH, "w") as f:
         json.dump(config, f, indent=2)
     return {"model_version": "lstm_v1"}
 
@@ -79,8 +81,8 @@ def predict_lstm(feature_vector: np.ndarray, model=None, scaler=None, config=Non
         ck = torch.load(LSTM_MODEL_PATH, map_location="cpu")
         model = LSTMRisk(ck["n_features"], hidden_size=ck["hidden_size"])
         model.load_state_dict(ck["state_dict"])
-        scaler = joblib.load(SCALER_PATH)
-        with open(MODEL_CONFIG_PATH) as f:
+        scaler = joblib.load(LSTM_SCALER_PATH)
+        with open(LSTM_CONFIG_PATH) as f:
             config = json.load(f)
     X = feature_vector
     if X.ndim == 2:

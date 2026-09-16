@@ -2,19 +2,26 @@
 from datetime import date as date_type, datetime
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class BloodTestCreate(BaseModel):
     """Request body for POST /blood-test."""
 
-    patient_id: str = Field(..., description="External patient identifier")
+    patient_id: str = Field(..., min_length=1, max_length=255, description="External patient identifier")
     date: date_type = Field(..., description="Date of the blood test")
     wbc: Optional[float] = Field(None, ge=0, le=100, description="White blood cells (K/uL)")
     rbc: Optional[float] = Field(None, ge=0, le=10, description="Red blood cells (M/uL)")
     platelets: Optional[float] = Field(None, ge=0, le=2000, description="Platelets (K/uL)")
     hemoglobin: Optional[float] = Field(None, ge=0, le=25, description="Hemoglobin (g/dL)")
     lymphocytes: Optional[float] = Field(None, ge=0, le=100, description="Lymphocytes (%)")
+
+    @field_validator("patient_id")
+    @classmethod
+    def clean_patient_id(cls, value):
+        if not value.strip():
+            raise ValueError("Patient identifier must not be blank")
+        return value.strip()
 
     model_config = {"json_schema_extra": {"example": {"patient_id": "123", "date": "2025-05-01", "wbc": 7.2, "rbc": 4.8, "platelets": 210, "hemoglobin": 13.5, "lymphocytes": 40}}}
 

@@ -86,6 +86,11 @@ def run_federated(
 ) -> dict:
     """Simulate federated training: partition data by site, local training, FedAvg aggregation."""
     X, y = load_training_data(data_path, label_col=label_col)
+    if X.isna().any().any():
+        raise ValueError(
+            "The experimental federated path requires complete features. "
+            "Add preprocessing fitted on each training site before using incomplete data."
+        )
     X = X.values.astype(np.float32)
     y = y.values.astype(np.float32).reshape(-1, 1)
     # Partition by row (simulate sites)
@@ -113,7 +118,12 @@ def run_federated(
     X_all = torch.tensor(X, dtype=torch.float32)
     y_all = torch.tensor(y, dtype=torch.float32)
     acc = evaluate(global_model, X_all, y_all)
-    return {"rounds": rounds, "num_sites": num_sites, "final_accuracy": acc}
+    return {
+        "rounds": rounds,
+        "num_sites": num_sites,
+        "training_accuracy": acc,
+        "evaluation_note": "Evaluated on training records; this is not held-out or cross-site performance.",
+    }
 
 
 if __name__ == "__main__":

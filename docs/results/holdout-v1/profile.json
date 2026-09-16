@@ -1,0 +1,2185 @@
+{
+  "schema_version": "cbc_profile_v1",
+  "dataset_sha256": "1d4a7b1054ad38fb3989a5f31cfd6a6ff9b16efcebfd612f981e7b09d4efb88e",
+  "generated_at_utc": "2026-09-14T14:51:11.866894+00:00",
+  "source_sha256": "94d4e504a1610ed8511bb2fe3b7b551aa4fd54efeecfab4cb86770c2fc676cba",
+  "units": {
+    "wbc": "10^9/L",
+    "rbc": "10^12/L",
+    "platelets": "10^9/L",
+    "hemoglobin": "g/dL",
+    "lymphocytes": "%",
+    "hematocrit": "%",
+    "mcv": "fL",
+    "mch": "pg",
+    "mchc": "g/dL",
+    "rdw_cv": "%",
+    "neutrophils": "10^9/L",
+    "monocytes": "10^9/L",
+    "eosinophils": "10^9/L",
+    "basophils": "10^9/L",
+    "lymphocytes_absolute": "10^9/L"
+  },
+  "groups": [
+    {
+      "cohort": "development",
+      "scope": "overall",
+      "site": null,
+      "n": 26922,
+      "n_positive": 8974,
+      "features": {
+        "wbc": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 0.25,
+          "q1": 3.11,
+          "median": 6.01,
+          "q3": 9.2,
+          "p95": 17.65
+        },
+        "rbc": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 1.99,
+          "q1": 2.66,
+          "median": 3.44,
+          "q3": 4.13,
+          "p95": 4.92
+        },
+        "platelets": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 12.0,
+          "q1": 59.0,
+          "median": 167.0,
+          "q3": 245.0,
+          "p95": 376.0
+        },
+        "hemoglobin": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 6.2,
+          "q1": 8.1,
+          "median": 10.3,
+          "q3": 12.3,
+          "p95": 14.7
+        },
+        "lymphocytes": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 2.5,
+          "q1": 9.5,
+          "median": 19.4,
+          "q3": 33.1,
+          "p95": 76.5949999999997
+        },
+        "hematocrit": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 0.209,
+          "q1": 0.302,
+          "median": 0.405,
+          "q3": 28.3,
+          "p95": 40.4
+        },
+        "mcv": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 81.3,
+          "q1": 88.8,
+          "median": 92.5,
+          "q3": 96.7,
+          "p95": 104.0
+        },
+        "mch": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 25.7,
+          "q1": 29.2,
+          "median": 30.5,
+          "q3": 31.7,
+          "p95": 34.3
+        },
+        "mchc": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 30.3,
+          "q1": 31.9,
+          "median": 32.800000000000004,
+          "q3": 33.6,
+          "p95": 35.1
+        },
+        "rdw_cv": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 12.7,
+          "median": 13.8,
+          "q3": 15.8,
+          "p95": 20.3
+        },
+        "neutrophils": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 0.03,
+          "q1": 1.73,
+          "median": 3.86,
+          "q3": 6.8,
+          "p95": 14.08
+        },
+        "monocytes": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.2,
+          "median": 0.42,
+          "q3": 0.68,
+          "p95": 1.51
+        },
+        "eosinophils": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.0,
+          "median": 0.03,
+          "q3": 0.11,
+          "p95": 0.33
+        },
+        "basophils": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.03,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 26922,
+          "missing": 0,
+          "p05": 0.09,
+          "q1": 0.48,
+          "median": 0.98,
+          "q3": 1.63,
+          "p95": 3.03
+        }
+      }
+    },
+    {
+      "cohort": "development",
+      "scope": "site",
+      "site": "A",
+      "n": 11016,
+      "n_positive": 3672,
+      "features": {
+        "wbc": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 0.18,
+          "q1": 2.89,
+          "median": 5.9,
+          "q3": 9.18,
+          "p95": 17.615
+        },
+        "rbc": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 1.85,
+          "q1": 2.53,
+          "median": 3.36,
+          "q3": 4.05,
+          "p95": 4.79
+        },
+        "platelets": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 10.0,
+          "q1": 50.0,
+          "median": 160.0,
+          "q3": 242.0,
+          "p95": 370.0
+        },
+        "hemoglobin": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 5.9,
+          "q1": 7.9,
+          "median": 10.2,
+          "q3": 12.3,
+          "p95": 14.4
+        },
+        "lymphocytes": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 1.7,
+          "q1": 7.7,
+          "median": 16.1,
+          "q3": 29.6,
+          "p95": 81.025
+        },
+        "hematocrit": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 17.6,
+          "q1": 24.1,
+          "median": 31.3,
+          "q3": 37.2,
+          "p95": 43.3
+        },
+        "mcv": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 83.6,
+          "q1": 89.6,
+          "median": 93.1,
+          "q3": 97.1,
+          "p95": 104.3
+        },
+        "mch": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 27.0,
+          "q1": 29.6,
+          "median": 30.8,
+          "q3": 32.0,
+          "p95": 34.7
+        },
+        "mchc": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 30.700000000000003,
+          "q1": 32.1,
+          "median": 33.0,
+          "q3": 33.800000000000004,
+          "p95": 35.300000000000004
+        },
+        "rdw_cv": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 11.8,
+          "q1": 12.7,
+          "median": 13.7,
+          "q3": 15.5,
+          "p95": 20.2
+        },
+        "neutrophils": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 0.01,
+          "q1": 1.64,
+          "median": 3.92,
+          "q3": 7.04,
+          "p95": 14.3925
+        },
+        "monocytes": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.2,
+          "median": 0.46,
+          "q3": 0.71,
+          "p95": 1.44
+        },
+        "eosinophils": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.0,
+          "median": 0.02,
+          "q3": 0.08,
+          "p95": 0.26
+        },
+        "basophils": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.01,
+          "q3": 0.03,
+          "p95": 0.06
+        },
+        "lymphocytes_absolute": {
+          "observed": 11016,
+          "missing": 0,
+          "p05": 0.05,
+          "q1": 0.39,
+          "median": 0.81,
+          "q3": 1.37,
+          "p95": 2.51
+        }
+      }
+    },
+    {
+      "cohort": "development",
+      "scope": "site",
+      "site": "B",
+      "n": 4215,
+      "n_positive": 1405,
+      "features": {
+        "wbc": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 0.37,
+          "q1": 3.98,
+          "median": 6.52,
+          "q3": 9.364999999999998,
+          "p95": 17.17199999999999
+        },
+        "rbc": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 2.17,
+          "q1": 2.79,
+          "median": 3.74,
+          "q3": 4.52,
+          "p95": 5.352999999999997
+        },
+        "platelets": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 18.0,
+          "q1": 72.0,
+          "median": 187.0,
+          "q3": 259.0,
+          "p95": 382.2999999999997
+        },
+        "hemoglobin": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 6.7,
+          "q1": 8.3,
+          "median": 10.9,
+          "q3": 13.2,
+          "p95": 15.4
+        },
+        "lymphocytes": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 3.3,
+          "q1": 11.1,
+          "median": 22.7,
+          "q3": 34.05,
+          "p95": 58.629999999999974
+        },
+        "hematocrit": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 0.197,
+          "q1": 0.251,
+          "median": 0.333,
+          "q3": 0.399,
+          "p95": 0.46129999999999977
+        },
+        "mcv": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 71.6,
+          "q1": 86.0,
+          "median": 90.0,
+          "q3": 93.8,
+          "p95": 100.82999999999997
+        },
+        "mch": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 22.5,
+          "q1": 28.7,
+          "median": 30.0,
+          "q3": 31.4,
+          "p95": 33.7
+        },
+        "mchc": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 30.5,
+          "q1": 32.300000000000004,
+          "median": 33.2,
+          "q3": 34.0,
+          "p95": 35.5
+        },
+        "rdw_cv": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 11.7,
+          "q1": 12.6,
+          "median": 13.7,
+          "q3": 16.0,
+          "p95": 21.0
+        },
+        "neutrophils": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 0.16,
+          "q1": 2.32,
+          "median": 4.03,
+          "q3": 6.415,
+          "p95": 13.28
+        },
+        "monocytes": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 0.03700000000000017,
+          "q1": 0.36,
+          "median": 0.55,
+          "q3": 0.85,
+          "p95": 1.9329999999999972
+        },
+        "eosinophils": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.07,
+          "q3": 0.16,
+          "p95": 0.4529999999999973
+        },
+        "basophils": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.03,
+          "q3": 0.04,
+          "p95": 0.08
+        },
+        "lymphocytes_absolute": {
+          "observed": 4215,
+          "missing": 0,
+          "p05": 0.09,
+          "q1": 0.68,
+          "median": 1.38,
+          "q3": 2.03,
+          "p95": 3.42
+        }
+      }
+    },
+    {
+      "cohort": "development",
+      "scope": "site",
+      "site": "C",
+      "n": 11691,
+      "n_positive": 3897,
+      "features": {
+        "wbc": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 0.31,
+          "q1": 3.025,
+          "median": 5.92,
+          "q3": 9.17,
+          "p95": 18.0
+        },
+        "rbc": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 2.085,
+          "q1": 2.72,
+          "median": 3.41,
+          "q3": 4.07,
+          "p95": 4.82
+        },
+        "platelets": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 13.0,
+          "q1": 62.0,
+          "median": 165.0,
+          "q3": 243.0,
+          "p95": 380.0
+        },
+        "hemoglobin": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 6.5,
+          "q1": 8.200000000000001,
+          "median": 10.2,
+          "q3": 12.1,
+          "p95": 14.5
+        },
+        "lymphocytes": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 3.3,
+          "q1": 11.1,
+          "median": 21.4,
+          "q3": 35.2,
+          "p95": 77.3
+        },
+        "hematocrit": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 0.196,
+          "q1": 0.256,
+          "median": 0.316,
+          "q3": 0.372,
+          "p95": 0.441
+        },
+        "mcv": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 81.8,
+          "q1": 89.1,
+          "median": 92.9,
+          "q3": 97.1,
+          "p95": 104.7
+        },
+        "mch": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 25.7,
+          "q1": 29.0,
+          "median": 30.3,
+          "q3": 31.6,
+          "p95": 34.1
+        },
+        "mchc": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 30.0,
+          "q1": 31.6,
+          "median": 32.4,
+          "q3": 33.300000000000004,
+          "p95": 34.7
+        },
+        "rdw_cv": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 12.9,
+          "median": 14.0,
+          "q3": 15.9,
+          "p95": 20.1
+        },
+        "neutrophils": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 0.03,
+          "q1": 1.61,
+          "median": 3.73,
+          "q3": 6.73,
+          "p95": 14.06
+        },
+        "monocytes": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 0.01,
+          "q1": 0.16,
+          "median": 0.35,
+          "q3": 0.57,
+          "p95": 1.37
+        },
+        "eosinophils": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.0,
+          "median": 0.03,
+          "q3": 0.11,
+          "p95": 0.34
+        },
+        "basophils": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.03,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 11691,
+          "missing": 0,
+          "p05": 0.13,
+          "q1": 0.53,
+          "median": 1.04,
+          "q3": 1.69,
+          "p95": 3.395
+        }
+      }
+    },
+    {
+      "cohort": "validation",
+      "scope": "overall",
+      "site": null,
+      "n": 211612,
+      "n_positive": 7818,
+      "features": {
+        "wbc": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 2.41,
+          "q1": 5.22,
+          "median": 7.15,
+          "q3": 10.05,
+          "p95": 17.27
+        },
+        "rbc": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 2.32,
+          "q1": 3.23,
+          "median": 3.91,
+          "q3": 4.46,
+          "p95": 5.21
+        },
+        "platelets": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 37.0,
+          "q1": 143.0,
+          "median": 204.0,
+          "q3": 266.0,
+          "p95": 391.0
+        },
+        "hemoglobin": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 7.1000000000000005,
+          "q1": 9.5,
+          "median": 11.6,
+          "q3": 13.2,
+          "p95": 15.3
+        },
+        "lymphocytes": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 3.9,
+          "q1": 10.6,
+          "median": 19.7,
+          "q3": 30.6,
+          "p95": 47.2
+        },
+        "hematocrit": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 0.231,
+          "q1": 0.321,
+          "median": 0.388,
+          "q3": 25.2,
+          "p95": 41.8
+        },
+        "mcv": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 77.1,
+          "q1": 87.4,
+          "median": 91.4,
+          "q3": 95.2,
+          "p95": 102.3
+        },
+        "mch": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 23.7,
+          "q1": 28.7,
+          "median": 30.2,
+          "q3": 31.4,
+          "p95": 33.7
+        },
+        "mchc": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 30.3,
+          "q1": 32.0,
+          "median": 32.800000000000004,
+          "q3": 33.7,
+          "p95": 34.9
+        },
+        "rdw_cv": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 12.6,
+          "median": 13.4,
+          "q3": 15.2,
+          "p95": 19.7
+        },
+        "neutrophils": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 1.17,
+          "q1": 3.06,
+          "median": 4.73,
+          "q3": 7.7,
+          "p95": 14.66
+        },
+        "monocytes": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 0.1,
+          "q1": 0.32,
+          "median": 0.48,
+          "q3": 0.69,
+          "p95": 1.25
+        },
+        "eosinophils": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.02,
+          "median": 0.08,
+          "q3": 0.16,
+          "p95": 0.41
+        },
+        "basophils": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.04,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 211612,
+          "missing": 0,
+          "p05": 0.32,
+          "q1": 0.82,
+          "median": 1.31,
+          "q3": 1.89,
+          "p95": 3.08
+        }
+      }
+    },
+    {
+      "cohort": "validation",
+      "scope": "site",
+      "site": "A",
+      "n": 59986,
+      "n_positive": 2732,
+      "features": {
+        "wbc": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 1.85,
+          "q1": 5.07,
+          "median": 6.99,
+          "q3": 10.01,
+          "p95": 17.26
+        },
+        "rbc": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 2.28,
+          "q1": 3.15,
+          "median": 3.87,
+          "q3": 4.41,
+          "p95": 5.1
+        },
+        "platelets": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 31.0,
+          "q1": 132.0,
+          "median": 186.0,
+          "q3": 242.0,
+          "p95": 362.0
+        },
+        "hemoglobin": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 7.0,
+          "q1": 9.5,
+          "median": 11.7,
+          "q3": 13.3,
+          "p95": 15.4
+        },
+        "lymphocytes": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 3.6,
+          "q1": 9.9,
+          "median": 18.6,
+          "q3": 29.4,
+          "p95": 47.1
+        },
+        "hematocrit": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 21.6,
+          "q1": 29.3,
+          "median": 35.5,
+          "q3": 40.3,
+          "p95": 46.0
+        },
+        "mcv": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 82.3,
+          "q1": 89.0,
+          "median": 92.4,
+          "q3": 95.9,
+          "p95": 102.5
+        },
+        "mch": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 26.2,
+          "q1": 29.3,
+          "median": 30.5,
+          "q3": 31.7,
+          "p95": 33.9
+        },
+        "mchc": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 30.6,
+          "q1": 32.1,
+          "median": 32.9,
+          "q3": 33.7,
+          "p95": 34.800000000000004
+        },
+        "rdw_cv": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 11.8,
+          "q1": 12.5,
+          "median": 13.3,
+          "q3": 14.8,
+          "p95": 19.0
+        },
+        "neutrophils": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 0.86,
+          "q1": 2.99,
+          "median": 4.67,
+          "q3": 7.69,
+          "p95": 14.67
+        },
+        "monocytes": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 0.09,
+          "q1": 0.37,
+          "median": 0.53,
+          "q3": 0.75,
+          "p95": 1.32
+        },
+        "eosinophils": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.08,
+          "q3": 0.16,
+          "p95": 0.4
+        },
+        "basophils": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.04,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 59986,
+          "missing": 0,
+          "p05": 0.27,
+          "q1": 0.77,
+          "median": 1.21,
+          "q3": 1.74,
+          "p95": 2.77
+        }
+      }
+    },
+    {
+      "cohort": "validation",
+      "scope": "site",
+      "site": "B",
+      "n": 51228,
+      "n_positive": 933,
+      "features": {
+        "wbc": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 3.46,
+          "q1": 5.68,
+          "median": 7.37,
+          "q3": 10.13,
+          "p95": 18.07
+        },
+        "rbc": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 2.53,
+          "q1": 3.52,
+          "median": 4.2,
+          "q3": 4.74,
+          "p95": 5.67
+        },
+        "platelets": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 54.0,
+          "q1": 161.0,
+          "median": 222.0,
+          "q3": 281.0,
+          "p95": 401.0
+        },
+        "hemoglobin": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 7.4,
+          "q1": 10.0,
+          "median": 12.1,
+          "q3": 13.6,
+          "p95": 15.6
+        },
+        "lymphocytes": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 3.9,
+          "q1": 11.9,
+          "median": 22.7,
+          "q3": 32.5,
+          "p95": 45.4
+        },
+        "hematocrit": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 0.227,
+          "q1": 0.308,
+          "median": 0.366,
+          "q3": 0.407,
+          "p95": 0.462
+        },
+        "mcv": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 66.8,
+          "q1": 84.1,
+          "median": 88.7,
+          "q3": 92.3,
+          "p95": 98.4
+        },
+        "mch": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 20.8,
+          "q1": 27.9,
+          "median": 29.7,
+          "q3": 31.0,
+          "p95": 33.1
+        },
+        "mchc": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 30.4,
+          "q1": 32.300000000000004,
+          "median": 33.2,
+          "q3": 34.1,
+          "p95": 35.4
+        },
+        "rdw_cv": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 12.7,
+          "median": 13.5,
+          "q3": 15.6,
+          "p95": 20.6
+        },
+        "neutrophils": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 1.72,
+          "q1": 3.2,
+          "median": 4.62,
+          "q3": 7.5,
+          "p95": 15.29
+        },
+        "monocytes": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 0.23,
+          "q1": 0.41,
+          "median": 0.56,
+          "q3": 0.78,
+          "p95": 1.39
+        },
+        "eosinophils": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.03,
+          "median": 0.1,
+          "q3": 0.2,
+          "p95": 0.47
+        },
+        "basophils": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 0.01,
+          "q1": 0.02,
+          "median": 0.03,
+          "q3": 0.05,
+          "p95": 0.08
+        },
+        "lymphocytes_absolute": {
+          "observed": 51228,
+          "missing": 0,
+          "p05": 0.39,
+          "q1": 1.0,
+          "median": 1.56,
+          "q3": 2.15,
+          "p95": 3.23
+        }
+      }
+    },
+    {
+      "cohort": "validation",
+      "scope": "site",
+      "site": "C",
+      "n": 100398,
+      "n_positive": 4153,
+      "features": {
+        "wbc": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 2.23,
+          "q1": 5.04,
+          "median": 7.11,
+          "q3": 10.04,
+          "p95": 16.83149999999994
+        },
+        "rbc": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 2.26,
+          "q1": 3.15,
+          "median": 3.79,
+          "q3": 4.33,
+          "p95": 5.02
+        },
+        "platelets": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 34.0,
+          "q1": 142.0,
+          "median": 207.0,
+          "q3": 271.0,
+          "p95": 399.0
+        },
+        "hemoglobin": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 6.9,
+          "q1": 9.4,
+          "median": 11.3,
+          "q3": 12.9,
+          "p95": 15.0
+        },
+        "lymphocytes": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 4.1,
+          "q1": 10.6,
+          "median": 18.9,
+          "q3": 30.0,
+          "p95": 48.6
+        },
+        "hematocrit": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 0.215,
+          "q1": 0.292,
+          "median": 0.346,
+          "q3": 0.392,
+          "p95": 0.452
+        },
+        "mcv": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 80.7,
+          "q1": 88.2,
+          "median": 92.0,
+          "q3": 95.9,
+          "p95": 103.4
+        },
+        "mch": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 25.3,
+          "q1": 28.8,
+          "median": 30.2,
+          "q3": 31.4,
+          "p95": 33.9
+        },
+        "mchc": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 30.1,
+          "q1": 31.8,
+          "median": 32.6,
+          "q3": 33.4,
+          "p95": 34.7
+        },
+        "rdw_cv": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 12.6,
+          "median": 13.5,
+          "q3": 15.2,
+          "p95": 19.6
+        },
+        "neutrophils": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 1.09,
+          "q1": 3.0,
+          "median": 4.83,
+          "q3": 7.79,
+          "p95": 14.32
+        },
+        "monocytes": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 0.08,
+          "q1": 0.26,
+          "median": 0.41,
+          "q3": 0.61,
+          "p95": 1.1
+        },
+        "eosinophils": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.06,
+          "q3": 0.15,
+          "p95": 0.39
+        },
+        "basophils": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.04,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 100398,
+          "missing": 0,
+          "p05": 0.32,
+          "q1": 0.79,
+          "median": 1.25,
+          "q3": 1.83,
+          "p95": 3.15
+        }
+      }
+    },
+    {
+      "cohort": "external",
+      "scope": "overall",
+      "site": null,
+      "n": 149648,
+      "n_positive": 5789,
+      "features": {
+        "wbc": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 2.42,
+          "q1": 4.92,
+          "median": 6.5,
+          "q3": 8.89,
+          "p95": 15.25
+        },
+        "rbc": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 2.33,
+          "q1": 3.37,
+          "median": 4.07,
+          "q3": 4.6,
+          "p95": 5.33
+        },
+        "platelets": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 45.0,
+          "q1": 159.0,
+          "median": 216.0,
+          "q3": 275.0,
+          "p95": 394.0
+        },
+        "hemoglobin": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 7.0,
+          "q1": 9.9,
+          "median": 12.1,
+          "q3": 13.7,
+          "p95": 15.8
+        },
+        "lymphocytes": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 4.5,
+          "q1": 13.3,
+          "median": 23.2,
+          "q3": 32.8,
+          "p95": 47.0
+        },
+        "hematocrit": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 21.7,
+          "q1": 30.8,
+          "median": 37.0,
+          "q3": 41.8,
+          "p95": 47.9
+        },
+        "mcv": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 75.4,
+          "q1": 88.2,
+          "median": 92.2,
+          "q3": 96.0,
+          "p95": 102.6
+        },
+        "mch": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 23.0,
+          "q1": 28.8,
+          "median": 30.2,
+          "q3": 31.4,
+          "p95": 33.7
+        },
+        "mchc": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 30.1,
+          "q1": 31.700000000000003,
+          "median": 32.6,
+          "q3": 33.300000000000004,
+          "p95": 34.6
+        },
+        "rdw_cv": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 12.6,
+          "median": 13.4,
+          "q3": 15.2,
+          "p95": 19.9
+        },
+        "neutrophils": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 0.93,
+          "q1": 2.8,
+          "median": 4.06,
+          "q3": 6.36,
+          "p95": 12.71
+        },
+        "monocytes": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 0.08,
+          "q1": 0.29,
+          "median": 0.41,
+          "q3": 0.59,
+          "p95": 1.08
+        },
+        "eosinophils": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.03,
+          "median": 0.09,
+          "q3": 0.18,
+          "p95": 0.44
+        },
+        "basophils": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.04,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 149648,
+          "missing": 0,
+          "p05": 0.32,
+          "q1": 0.9,
+          "median": 1.42,
+          "q3": 1.97,
+          "p95": 3.0
+        }
+      }
+    },
+    {
+      "cohort": "external",
+      "scope": "site",
+      "site": "D",
+      "n": 30166,
+      "n_positive": 1324,
+      "features": {
+        "wbc": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 1.96,
+          "q1": 4.96,
+          "median": 7.03,
+          "q3": 9.93,
+          "p95": 16.71
+        },
+        "rbc": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 2.15,
+          "q1": 3.19,
+          "median": 3.93,
+          "q3": 4.52,
+          "p95": 5.39
+        },
+        "platelets": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 45.0,
+          "q1": 160.0,
+          "median": 225.0,
+          "q3": 291.0,
+          "p95": 428.0
+        },
+        "hemoglobin": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 6.300000000000001,
+          "q1": 9.0,
+          "median": 11.1,
+          "q3": 12.8,
+          "p95": 15.0
+        },
+        "lymphocytes": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 4.1,
+          "q1": 11.7,
+          "median": 20.2,
+          "q3": 30.7,
+          "p95": 49.4
+        },
+        "hematocrit": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 19.4,
+          "q1": 27.9,
+          "median": 34.0,
+          "q3": 38.9,
+          "p95": 45.2
+        },
+        "mcv": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 66.8,
+          "q1": 83.1,
+          "median": 88.8,
+          "q3": 93.3,
+          "p95": 101.175
+        },
+        "mch": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 20.5,
+          "q1": 27.0,
+          "median": 29.3,
+          "q3": 30.9,
+          "p95": 33.7
+        },
+        "mchc": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 30.1,
+          "q1": 31.8,
+          "median": 32.800000000000004,
+          "q3": 33.6,
+          "p95": 34.9
+        },
+        "rdw_cv": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 13.0,
+          "median": 14.3,
+          "q3": 16.5,
+          "p95": 21.7
+        },
+        "neutrophils": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 0.7925,
+          "q1": 2.7624999999999997,
+          "median": 4.37,
+          "q3": 7.15,
+          "p95": 13.62
+        },
+        "monocytes": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 0.11,
+          "q1": 0.42,
+          "median": 0.6,
+          "q3": 0.84,
+          "p95": 1.45
+        },
+        "eosinophils": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.03,
+          "median": 0.12,
+          "q3": 0.23,
+          "p95": 0.57
+        },
+        "basophils": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.03,
+          "p95": 0.06
+        },
+        "lymphocytes_absolute": {
+          "observed": 30166,
+          "missing": 0,
+          "p05": 0.28,
+          "q1": 0.82,
+          "median": 1.34,
+          "q3": 1.96,
+          "p95": 3.28
+        }
+      }
+    },
+    {
+      "cohort": "external",
+      "scope": "site",
+      "site": "E",
+      "n": 94320,
+      "n_positive": 2546,
+      "features": {
+        "wbc": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 2.84,
+          "q1": 4.95,
+          "median": 6.35,
+          "q3": 8.48,
+          "p95": 14.65
+        },
+        "rbc": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 2.44,
+          "q1": 3.49,
+          "median": 4.16,
+          "q3": 4.67,
+          "p95": 5.37
+        },
+        "platelets": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 55.0,
+          "q1": 164.0,
+          "median": 217.0,
+          "q3": 273.0,
+          "p95": 384.0
+        },
+        "hemoglobin": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 7.300000000000001,
+          "q1": 10.4,
+          "median": 12.4,
+          "q3": 14.0,
+          "p95": 16.0
+        },
+        "lymphocytes": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 4.2,
+          "q1": 14.0,
+          "median": 24.5,
+          "q3": 33.5,
+          "p95": 45.9
+        },
+        "hematocrit": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 23.2,
+          "q1": 32.5,
+          "median": 38.5,
+          "q3": 42.9,
+          "p95": 48.6
+        },
+        "mcv": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 80.5,
+          "q1": 89.8,
+          "median": 93.3,
+          "q3": 96.7,
+          "p95": 103.1
+        },
+        "mch": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 24.6,
+          "q1": 29.0,
+          "median": 30.3,
+          "q3": 31.5,
+          "p95": 33.6
+        },
+        "mchc": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 30.1,
+          "q1": 31.6,
+          "median": 32.4,
+          "q3": 33.1,
+          "p95": 34.1
+        },
+        "rdw_cv": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 11.9,
+          "q1": 12.6,
+          "median": 13.3,
+          "q3": 14.7,
+          "p95": 19.1
+        },
+        "neutrophils": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 1.11,
+          "q1": 2.81,
+          "median": 3.94,
+          "q3": 5.96,
+          "p95": 12.39
+        },
+        "monocytes": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 0.08,
+          "q1": 0.28,
+          "median": 0.37,
+          "q3": 0.52,
+          "p95": 0.9
+        },
+        "eosinophils": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.03,
+          "median": 0.1,
+          "q3": 0.18,
+          "p95": 0.42
+        },
+        "basophils": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.02,
+          "median": 0.03,
+          "q3": 0.04,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 94320,
+          "missing": 0,
+          "p05": 0.32,
+          "q1": 0.94,
+          "median": 1.46,
+          "q3": 1.99,
+          "p95": 2.94
+        }
+      }
+    },
+    {
+      "cohort": "external",
+      "scope": "site",
+      "site": "F",
+      "n": 20179,
+      "n_positive": 989,
+      "features": {
+        "wbc": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 2.25,
+          "q1": 5.05,
+          "median": 6.81,
+          "q3": 9.35,
+          "p95": 15.350999999999985
+        },
+        "rbc": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 2.32,
+          "q1": 3.3,
+          "median": 3.96,
+          "q3": 4.46,
+          "p95": 5.12
+        },
+        "platelets": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 36.0,
+          "q1": 154.0,
+          "median": 209.0,
+          "q3": 264.0,
+          "p95": 381.0
+        },
+        "hemoglobin": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 7.0,
+          "q1": 9.9,
+          "median": 11.9,
+          "q3": 13.5,
+          "p95": 15.5
+        },
+        "lymphocytes": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 5.690000000000009,
+          "q1": 13.3,
+          "median": 21.6,
+          "q3": 31.3,
+          "p95": 46.8
+        },
+        "hematocrit": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 21.5,
+          "q1": 30.2,
+          "median": 35.9,
+          "q3": 40.2,
+          "p95": 45.6
+        },
+        "mcv": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 81.29,
+          "q1": 87.8,
+          "median": 91.1,
+          "q3": 94.5,
+          "p95": 100.6
+        },
+        "mch": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 25.9,
+          "q1": 29.2,
+          "median": 30.4,
+          "q3": 31.6,
+          "p95": 33.6
+        },
+        "mchc": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 30.8,
+          "q1": 32.5,
+          "median": 33.300000000000004,
+          "q3": 34.1,
+          "p95": 35.2
+        },
+        "rdw_cv": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 11.8,
+          "q1": 12.3,
+          "median": 13.1,
+          "q3": 14.5,
+          "p95": 18.9
+        },
+        "neutrophils": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 1.079000000000001,
+          "q1": 3.01,
+          "median": 4.51,
+          "q3": 6.99,
+          "p95": 12.62
+        },
+        "monocytes": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 0.11,
+          "q1": 0.3,
+          "median": 0.42,
+          "q3": 0.58,
+          "p95": 1.01
+        },
+        "eosinophils": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.02,
+          "median": 0.07,
+          "q3": 0.14,
+          "p95": 0.34
+        },
+        "basophils": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.03,
+          "p95": 0.06
+        },
+        "lymphocytes_absolute": {
+          "observed": 20179,
+          "missing": 0,
+          "p05": 0.41,
+          "q1": 0.94,
+          "median": 1.39,
+          "q3": 1.91,
+          "p95": 2.9
+        }
+      }
+    },
+    {
+      "cohort": "external",
+      "scope": "site",
+      "site": "G",
+      "n": 4983,
+      "n_positive": 930,
+      "features": {
+        "wbc": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 0.79,
+          "q1": 3.26,
+          "median": 5.42,
+          "q3": 7.88,
+          "p95": 15.56
+        },
+        "rbc": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 2.14,
+          "q1": 2.76,
+          "median": 3.477482897384306,
+          "q3": 4.14,
+          "p95": 4.92
+        },
+        "platelets": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 15.0,
+          "q1": 70.0,
+          "median": 171.0,
+          "q3": 247.0,
+          "p95": 390.0
+        },
+        "hemoglobin": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 6.7,
+          "q1": 8.5,
+          "median": 10.5,
+          "q3": 12.4,
+          "p95": 15.0
+        },
+        "lymphocytes": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 5.6,
+          "q1": 14.5,
+          "median": 23.5,
+          "q3": 34.7,
+          "p95": 66.3
+        },
+        "hematocrit": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 20.4,
+          "q1": 25.8,
+          "median": 31.77494969818914,
+          "q3": 37.3,
+          "p95": 44.2
+        },
+        "mcv": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 81.5,
+          "q1": 87.9,
+          "median": 91.6,
+          "q3": 96.1,
+          "p95": 104.5
+        },
+        "mch": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 25.9,
+          "q1": 29.3,
+          "median": 30.54726358148894,
+          "q3": 32.0,
+          "p95": 34.8
+        },
+        "mchc": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 30.8,
+          "q1": 32.300000000000004,
+          "median": 33.2,
+          "q3": 34.0,
+          "p95": 35.300000000000004
+        },
+        "rdw_cv": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 12.1,
+          "q1": 13.2,
+          "median": 14.5,
+          "q3": 16.3,
+          "p95": 20.4
+        },
+        "neutrophils": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 0.23,
+          "q1": 1.97,
+          "median": 3.6,
+          "q3": 5.75,
+          "p95": 11.998999999999997
+        },
+        "monocytes": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 0.02,
+          "q1": 0.15,
+          "median": 0.26,
+          "q3": 0.4,
+          "p95": 0.92
+        },
+        "eosinophils": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.04,
+          "q3": 0.11,
+          "p95": 0.32
+        },
+        "basophils": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.04,
+          "p95": 0.08
+        },
+        "lymphocytes_absolute": {
+          "observed": 4983,
+          "missing": 0,
+          "p05": 0.24,
+          "q1": 0.63,
+          "median": 1.1,
+          "q3": 1.74,
+          "p95": 3.16
+        }
+      }
+    },
+    {
+      "cohort": "test",
+      "scope": "overall",
+      "site": null,
+      "n": 58481,
+      "n_positive": 2290,
+      "features": {
+        "wbc": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 1.98,
+          "q1": 5.05,
+          "median": 6.99,
+          "q3": 9.96,
+          "p95": 17.11
+        },
+        "rbc": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 2.31,
+          "q1": 3.18,
+          "median": 3.88,
+          "q3": 4.43,
+          "p95": 5.1
+        },
+        "platelets": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 31.0,
+          "q1": 137.0,
+          "median": 190.0,
+          "q3": 247.0,
+          "p95": 371.0
+        },
+        "hemoglobin": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 7.1000000000000005,
+          "q1": 9.5,
+          "median": 11.6,
+          "q3": 13.3,
+          "p95": 15.4
+        },
+        "lymphocytes": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 3.6,
+          "q1": 10.0,
+          "median": 18.6,
+          "q3": 29.3,
+          "p95": 45.8
+        },
+        "hematocrit": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 21.6,
+          "q1": 29.5,
+          "median": 35.5,
+          "q3": 40.3,
+          "p95": 46.0
+        },
+        "mcv": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 82.3,
+          "q1": 88.7,
+          "median": 92.2,
+          "q3": 95.6,
+          "p95": 101.9
+        },
+        "mch": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 26.2,
+          "q1": 29.2,
+          "median": 30.4,
+          "q3": 31.6,
+          "p95": 33.7
+        },
+        "mchc": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 30.6,
+          "q1": 32.1,
+          "median": 32.9,
+          "q3": 33.7,
+          "p95": 34.9
+        },
+        "rdw_cv": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 11.8,
+          "q1": 12.5,
+          "median": 13.2,
+          "q3": 14.7,
+          "p95": 18.7
+        },
+        "neutrophils": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.88,
+          "q1": 2.96,
+          "median": 4.64,
+          "q3": 7.66,
+          "p95": 14.59
+        },
+        "monocytes": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.1,
+          "q1": 0.38,
+          "median": 0.54,
+          "q3": 0.76,
+          "p95": 1.34
+        },
+        "eosinophils": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.02,
+          "median": 0.08,
+          "q3": 0.17,
+          "p95": 0.4
+        },
+        "basophils": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.04,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.29,
+          "q1": 0.77,
+          "median": 1.21,
+          "q3": 1.74,
+          "p95": 2.74
+        }
+      }
+    },
+    {
+      "cohort": "test",
+      "scope": "site",
+      "site": "real_world",
+      "n": 58481,
+      "n_positive": 2290,
+      "features": {
+        "wbc": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 1.98,
+          "q1": 5.05,
+          "median": 6.99,
+          "q3": 9.96,
+          "p95": 17.11
+        },
+        "rbc": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 2.31,
+          "q1": 3.18,
+          "median": 3.88,
+          "q3": 4.43,
+          "p95": 5.1
+        },
+        "platelets": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 31.0,
+          "q1": 137.0,
+          "median": 190.0,
+          "q3": 247.0,
+          "p95": 371.0
+        },
+        "hemoglobin": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 7.1000000000000005,
+          "q1": 9.5,
+          "median": 11.6,
+          "q3": 13.3,
+          "p95": 15.4
+        },
+        "lymphocytes": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 3.6,
+          "q1": 10.0,
+          "median": 18.6,
+          "q3": 29.3,
+          "p95": 45.8
+        },
+        "hematocrit": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 21.6,
+          "q1": 29.5,
+          "median": 35.5,
+          "q3": 40.3,
+          "p95": 46.0
+        },
+        "mcv": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 82.3,
+          "q1": 88.7,
+          "median": 92.2,
+          "q3": 95.6,
+          "p95": 101.9
+        },
+        "mch": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 26.2,
+          "q1": 29.2,
+          "median": 30.4,
+          "q3": 31.6,
+          "p95": 33.7
+        },
+        "mchc": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 30.6,
+          "q1": 32.1,
+          "median": 32.9,
+          "q3": 33.7,
+          "p95": 34.9
+        },
+        "rdw_cv": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 11.8,
+          "q1": 12.5,
+          "median": 13.2,
+          "q3": 14.7,
+          "p95": 18.7
+        },
+        "neutrophils": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.88,
+          "q1": 2.96,
+          "median": 4.64,
+          "q3": 7.66,
+          "p95": 14.59
+        },
+        "monocytes": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.1,
+          "q1": 0.38,
+          "median": 0.54,
+          "q3": 0.76,
+          "p95": 1.34
+        },
+        "eosinophils": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.02,
+          "median": 0.08,
+          "q3": 0.17,
+          "p95": 0.4
+        },
+        "basophils": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.0,
+          "q1": 0.01,
+          "median": 0.02,
+          "q3": 0.04,
+          "p95": 0.07
+        },
+        "lymphocytes_absolute": {
+          "observed": 58481,
+          "missing": 0,
+          "p05": 0.29,
+          "q1": 0.77,
+          "median": 1.21,
+          "q3": 1.74,
+          "p95": 2.74
+        }
+      }
+    }
+  ]
+}

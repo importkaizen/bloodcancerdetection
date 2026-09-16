@@ -5,6 +5,8 @@ from typing import Optional, Tuple
 
 import numpy as np
 from sklearn.ensemble import IsolationForest
+from sklearn.impute import SimpleImputer
+from sklearn.pipeline import Pipeline
 
 from hemasight.config import ML_MODELS_DIR
 
@@ -15,27 +17,53 @@ FEATURE_COLS = [
 ]
 ANOMALY_MODEL_PATH = ML_MODELS_DIR / "anomaly_isolation_forest.pkl"
 ANOMALY_CONFIG_PATH = ML_MODELS_DIR / "anomaly_config.json"
-VERSION = "isolation_forest_v1"
+VERSION = "isolation_forest_v2"
 
 
 def feature_row_to_vector(feature_row: dict) -> np.ndarray:
-    vec = []
-    for c in FEATURE_COLS:
-        v = feature_row.get(c)
-        if v is None or (isinstance(v, float) and np.isnan(v)):
-            v = 0.0
-        vec.append(float(v))
-    return np.array(vec).reshape(1, -1)
+    from hemasight.ml.inference import feature_row_to_vector as ordered_vector
+    return ordered_vector(feature_row, FEATURE_COLS)
 
 
-def fit_isolation_forest(X: np.ndarray, contamination: float = 0.1, random_state: int = 42) -> Path:
-    """Fit Isolation Forest on feature matrix X (n_samples, n_features). Save model and config."""
-    ML_MODELS_DIR.mkdir(parents=True, exist_ok=True)
-    clf = IsolationForest(contamination=contamination, random_state=random_state)
+def artifact_version() -> str:
+    if ANOMALY_CONFIG_PATH.exists():
+        return json.loads(ANOMALY_CONFIG_PATH.read_text())["version"]
+    return "isolation_forest_v1"
+
+
+def fit_isolation_forest(
+    X: np.ndarray,
+    contamination: float = 0.1,
+    random_state: int = 42,
+    *,
+    feature_version: str = "v1",
+) -> Path:
+    """Fit and save Isolation Forest with its input feature version.
+
+    Pass ``feature_version="v2"`` only when X uses the corrected elapsed-day,
+    recent-window features. The default preserves existing v1 training callers.
+    """
+    if not isinstance(feature_version, str) or not feature_version.strip():
+        raise ValueError("feature_version must be a nonempty string")
+    X = np.asarray(X, dtype=float)
+    if X.ndim != 2 or not len(X) or X.shape[1] != len(FEATURE_COLS):
+        raise ValueError("Training matrix must be nonempty with 13 ordered features")
+    if np.isinf(X).any() or np.isnan(X).all(axis=0).any():
+        raise ValueError("Training features must not be infinite or entirely missing")
+    clf = Pipeline([
+        ("imputer", SimpleImputer(strategy="median")),
+        ("model", IsolationForest(contamination=contamination, random_state=random_state)),
+    ])
     clf.fit(X)
+    ML_MODELS_DIR.mkdir(parents=True, exist_ok=True)
     import joblib
     joblib.dump(clf, ANOMALY_MODEL_PATH)
-    config = {"feature_columns": FEATURE_COLS, "version": VERSION}
+    config = {
+        "feature_columns": FEATURE_COLS,
+        "version": VERSION,
+        "feature_version": feature_version,
+        "preprocessing": "training_fitted_median_imputer",
+    }
     with open(ANOMALY_CONFIG_PATH, "w") as f:
         json.dump(config, f, indent=2)
     return ANOMALY_MODEL_PATH
@@ -50,6 +78,12 @@ def predict_anomaly(feature_vector: np.ndarray, model=None) -> Tuple[float, int]
     if model is None:
         import joblib
         model = joblib.load(ANOMALY_MODEL_PATH)
+    feature_vector = np.asarray(feature_vector, dtype=float)
+    if feature_vector.shape != (1, len(FEATURE_COLS)) or np.isinf(feature_vector).any():
+        raise ValueError("Expected one row of 13 finite-or-missing features")
+    has_imputer = isinstance(model, Pipeline) and any(isinstance(step, SimpleImputer) for _, step in model.steps)
+    if np.isnan(feature_vector).any() and not has_imputer:
+        raise ValueError("Legacy anomaly model has no trained imputer; retrain before scoring missing features")
     pred = model.predict(feature_vector)[0]  # -1 or 1
     score = -model.decision_function(feature_vector)[0]  # higher = more anomalous
     is_anomaly = 1 if pred == -1 else 0
@@ -70,6 +104,18 @@ def compute_anomaly_for_feature_id(feature_id: int) -> Optional[Tuple[float, int
         row = db.query(Feature).filter(Feature.id == feature_id).first()
         if not row:
             return None
+        config = {}
+        if ANOMALY_CONFIG_PATH.exists():
+            with open(ANOMALY_CONFIG_PATH) as f:
+                config = json.load(f)
+        expected_version = config.get("feature_version", "v1")
+        if row.feature_version != expected_version:
+            raise ValueError(
+                f"Anomaly model expects feature version {expected_version!r}, "
+                f"but row {feature_id} uses {row.feature_version!r}. "
+                "Retrain the Isolation Forest on matching features and save "
+                "their feature_version before scoring this row."
+            )
         row_dict = {c.key: getattr(row, c.key) for c in row.__table__.columns}
         vec = feature_row_to_vector(row_dict)
         model = joblib.load(ANOMALY_MODEL_PATH)

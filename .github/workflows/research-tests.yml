@@ -1,0 +1,35 @@
+name: Research checks
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements.lock
+      - run: python -m pip install --no-deps -e .
+      - run: python -m pytest -q
+      - run: python -m hemasight.research.leukoalert --help
+      - run: python -m hemasight.research.benchmark --help
+  dashboard:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: hemasight/frontend/react-dashboard
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: hemasight/frontend/react-dashboard/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
