@@ -14,8 +14,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title="HemaSight API",
-    description="Distributed AI for early hematologic abnormality risk from CBC time-series",
-    version="0.1.0",
+    description="Research-only CBC analysis and experimental blood-pattern model outputs",
+    version="0.2.0",
     lifespan=lifespan,
 )
 app.add_middleware(
@@ -32,6 +32,7 @@ def health():
     return {"status": "ok"}
 
 
-from hemasight.api.routes import blood_test, patients
+from hemasight.api.routes import blood_test, patients, research
 app.include_router(blood_test.router)
 app.include_router(patients.router)
+app.include_router(research.router)

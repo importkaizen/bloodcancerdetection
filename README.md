@@ -1,11 +1,31 @@
-# HemaSight – Distributed AI for Early Blood Cancer Risk Detection
+# HemaSight – CBC Screening Research and Blood-Pattern Analysis
 
 [Python 3.10+](https://www.python.org/downloads/)
 [License: MIT](https://opensource.org/licenses/MIT)
 
-HemaSight is a **distributed AI platform** for detecting early abnormal patterns in CBC (complete blood count) time-series data. It targets hematologic abnormalities such as Leukemia, Lymphoma, and Multiple Myeloma. The system does **not** provide a diagnosis; it surfaces **pattern drift** that may indicate early hematologic abnormalities.
+HemaSight combines a reproducible CBC screening benchmark with an experimental application for longitudinal blood-pattern analysis. The research workflow compares five common CBC measurements with an expanded fifteen-feature set across the released LeukoAlert hospital cohorts. The project has not established early cancer prediction, clinical efficacy, or diagnostic suitability.
 
-> *"Your blood patterns show unusual drift that may indicate early hematologic abnormalities."*
+## Research workflow
+
+Start with [the research guide](docs/RESEARCH.md) and [the first experiment protocol](docs/EXPERIMENT_PROTOCOL.md). The original application setup follows below.
+
+The [first completed benchmark](docs/FIRST_RESULTS.md) includes eight experiments on 446,663 released records, full hospital-level comparisons, and reproducibility metadata.
+
+See [application changes and verification](docs/APPLICATION_TESTING.md) for durable queue delivery, retry-safe ingestion, corrected chart timelines, and the latest local checks.
+
+```bash
+# Python 3.11; create and activate a virtual environment first
+python -m pip install -r requirements.lock
+python -m pip install --no-deps -e .
+python -m pytest -q
+python -m hemasight.research.leukoalert download --output data/raw/LeukoAlert-project.zip
+python -m hemasight.research.leukoalert prepare --archive data/raw/LeukoAlert-project.zip --output data/processed/leukoalert-v1
+python -m hemasight.research.benchmark data/processed/leukoalert-v1/features.csv --output runs/development-v1 --models logistic rf xgboost
+```
+
+The benchmark preserves hospital cohorts, learns preprocessing from development data only, and saves immutable models and aggregate evaluation reports. External/test evaluation requires `--evaluate-holdouts` after fixing the experiment. Patient overlap cannot be verified from the released sample IDs; the data do not include the dates needed to establish advance prediction. Raw data and model artifacts are excluded from Git.
+
+Longitudinal workers now use feature version `v2`: the latest five visits and trends per elapsed day. Existing `v1` models require retraining against matching features. PyTorch is optional and installed through `.[deep-learning]` for the separate experimental neural models.
 
 ---
 
@@ -61,7 +81,7 @@ React Dashboard
 ### Prerequisites
 
 - [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
-- Optional for local dev: Python 3.10+, Node 18+
+- Optional for local dev: Python 3.11 (tested), Node 22
 
 ### Run the full stack
 
@@ -80,7 +100,7 @@ docker compose up -d
 | API         | [http://localhost:8000](http://localhost:8000)                 |
 | API docs    | [http://localhost:8000/docs](http://localhost:8000/docs)       |
 | Dashboard   | [http://localhost:3000](http://localhost:3000)                 |
-| RabbitMQ UI | [http://localhost:15672](http://localhost:15672) (guest/guest) |
+| RabbitMQ UI | [http://localhost:15672](http://localhost:15672) (hemasight/hemasight in local Compose) |
 
 
 ### Ingest a blood test
@@ -91,7 +111,7 @@ curl -X POST http://localhost:8000/blood-test \
   -d '{"patient_id":"P001","date":"2025-05-01","wbc":7.2,"rbc":4.8,"platelets":210,"hemoglobin":13.5,"lymphocytes":40}'
 ```
 
-Response: `202 Accepted` with `blood_test_id` and `patient_id`. The payload is stored, published to RabbitMQ, and processed by Celery workers (features → risk score → anomaly score).
+Response: `202 Accepted` with `blood_test_id` and `patient_id`. The test and delivery event are saved together; the dispatcher retries publication during queue outages. Celery computes features, then schedules risk and anomaly scoring. Use an `Idempotency-Key` header when retrying imports to reuse the original test instead of adding a duplicate.
 
 ---
 
@@ -152,7 +172,7 @@ hemasight/
 ## Datasets
 
 - **Sample**: `hemasight/ml/data/sample_training_data.csv`
-- **Research**: ALL (leukemia), MIMIC (with access), or Kaggle CBC datasets. Map columns to the schema (`wbc`, `rbc`, `platelets`, `hemoglobin`, `lymphocytes`, plus derived features and a `label` column). Do not commit PHI.
+- **Research**: see [LeukoAlert preparation and dataset limitations](docs/RESEARCH.md). Longitudinal work requires an appropriate patient-linked dataset and a defined outcome timeline; mapping feature names alone is insufficient.
 
 ---
 

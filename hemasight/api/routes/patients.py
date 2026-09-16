@@ -32,6 +32,8 @@ class RiskScoreOut(BaseModel):
     model_version: str
     message: Optional[str]
     computed_at: datetime
+    blood_test_id: Optional[int]
+    blood_test_date: Optional[datetime]
 
 
 class PatientOut(BaseModel):
@@ -59,7 +61,7 @@ def get_patient_blood_tests(patient_id: int):
         patient = db.query(Patient).filter(Patient.id == patient_id).first()
         if not patient:
             raise HTTPException(status_code=404, detail="Patient not found")
-        tests = db.query(BloodTest).filter(BloodTest.patient_id == patient_id).order_by(BloodTest.date).all()
+        tests = db.query(BloodTest).filter(BloodTest.patient_id == patient_id).order_by(BloodTest.date, BloodTest.id).all()
         return [BloodTestOut(id=t.id, patient_id=t.patient_id, date=t.date, wbc=t.wbc, rbc=t.rbc, platelets=t.platelets, hemoglobin=t.hemoglobin, lymphocytes=t.lymphocytes, created_at=t.created_at) for t in tests]
     finally:
         db.close()
@@ -73,7 +75,17 @@ def get_patient_risk_scores(patient_id: int):
         patient = db.query(Patient).filter(Patient.id == patient_id).first()
         if not patient:
             raise HTTPException(status_code=404, detail="Patient not found")
-        scores = db.query(RiskScore).filter(RiskScore.patient_id == patient_id).order_by(RiskScore.computed_at).all()
-        return [RiskScoreOut(id=s.id, patient_id=s.patient_id, score=s.score, level=s.level, model_version=s.model_version, message=s.message, computed_at=s.computed_at) for s in scores]
+        scores = (
+            db.query(RiskScore, BloodTest.date)
+            .outerjoin(BloodTest, (RiskScore.blood_test_id == BloodTest.id) & (RiskScore.patient_id == BloodTest.patient_id))
+            .filter(RiskScore.patient_id == patient_id)
+            .order_by(BloodTest.date.asc().nullsfirst(), BloodTest.id, RiskScore.computed_at, RiskScore.id)
+            .all()
+        )
+        return [RiskScoreOut(
+            id=s.id, patient_id=s.patient_id, score=s.score, level=s.level,
+            model_version=s.model_version, message=s.message, computed_at=s.computed_at,
+            blood_test_id=s.blood_test_id, blood_test_date=test_date,
+        ) for s, test_date in scores]
     finally:
         db.close()

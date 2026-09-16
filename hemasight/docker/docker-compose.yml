@@ -6,7 +6,7 @@ services:
       POSTGRES_PASSWORD: hemasight
       POSTGRES_DB: hemasight
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
@@ -17,11 +17,14 @@ services:
 
   rabbitmq:
     image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: hemasight
+      RABBITMQ_DEFAULT_PASS: hemasight
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "127.0.0.1:5672:5672"
+      - "127.0.0.1:15672:15672"
     healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "check_port_connectivity"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -31,11 +34,11 @@ services:
       context: ../..
       dockerfile: hemasight/docker/Dockerfile.api
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     environment:
       DATABASE_URL: postgresql://hemasight:hemasight@postgres:5432/hemasight
-      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
-      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672/
+      RABBITMQ_URL: amqp://hemasight:hemasight@rabbitmq:5672/
+      CELERY_BROKER_URL: amqp://hemasight:hemasight@rabbitmq:5672/
     depends_on:
       postgres:
         condition: service_healthy
@@ -48,7 +51,7 @@ services:
       dockerfile: hemasight/docker/Dockerfile.workers
     environment:
       DATABASE_URL: postgresql://hemasight:hemasight@postgres:5432/hemasight
-      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672/
+      CELERY_BROKER_URL: amqp://hemasight:hemasight@rabbitmq:5672/
     depends_on:
       postgres:
         condition: service_healthy
@@ -56,14 +59,30 @@ services:
         condition: service_healthy
 
   consumer:
+    restart: unless-stopped
     build:
       context: ../..
       dockerfile: hemasight/docker/Dockerfile.workers
     command: python -c "from hemasight.data_pipeline.consumer import run_consumer; run_consumer()"
     environment:
       DATABASE_URL: postgresql://hemasight:hemasight@postgres:5432/hemasight
-      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672/
-      CELERY_BROKER_URL: amqp://guest:guest@rabbitmq:5672/
+      RABBITMQ_URL: amqp://hemasight:hemasight@rabbitmq:5672/
+      CELERY_BROKER_URL: amqp://hemasight:hemasight@rabbitmq:5672/
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+  dispatcher:
+    build:
+      context: ../..
+      dockerfile: hemasight/docker/Dockerfile.workers
+    command: python -m hemasight.data_pipeline.outbox
+    environment:
+      DATABASE_URL: postgresql://hemasight:hemasight@postgres:5432/hemasight
+      RABBITMQ_URL: amqp://hemasight:hemasight@rabbitmq:5672/
+    restart: unless-stopped
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -75,7 +94,7 @@ services:
       context: ../..
       dockerfile: hemasight/docker/Dockerfile.dashboard
     ports:
-      - "3000:80"
+      - "127.0.0.1:3000:80"
     depends_on:
       - api
 

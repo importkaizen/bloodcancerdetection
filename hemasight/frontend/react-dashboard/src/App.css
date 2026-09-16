@@ -1,4 +1,5 @@
 #root {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.5rem;
@@ -41,7 +42,7 @@ main {
 }
 
 .patient-list a {
-  color: #646cff;
+  color: #155b88;
   text-decoration: none;
 }
 
@@ -50,7 +51,7 @@ main {
 }
 
 .muted {
-  color: #888;
+  color: #526575;
   font-size: 0.9rem;
 }
 
@@ -61,11 +62,24 @@ main {
 .chart-section {
   margin-bottom: 2rem;
   padding: 1rem;
-  background: #fafafa;
+  background: #ffffff;
+  color: #172b3a;
+  border: 1px solid #d5dfe6;
   border-radius: 8px;
 }
 
 .chart-section h3 {
-  margin-top: 0 0 1rem 0;
+  margin: 0 0 1rem 0;
   font-size: 1.1rem;
+}
+
+.app nav { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 1.25rem; }
+.app nav a { padding: 0.5rem 0; border-bottom: 2px solid transparent; color: #526575; font-size: 0.9rem; }
+.app nav a.active { border-color: #24658a; color: #155b88; font-weight: 650; }
+
+.metric-picker { display: flex; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1rem; }
+.metric-picker select { font: inherit; color: inherit; padding: 0.5rem; border: 1px solid #899ead; border-radius: 4px; background: white; max-width: 100%; }
+@media (max-width: 600px) {
+  #root { padding: 1rem; }
+  .chart-section { padding: 0.75rem; }
 }

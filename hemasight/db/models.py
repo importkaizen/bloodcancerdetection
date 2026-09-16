@@ -78,6 +78,18 @@ class Feature(Base):
     blood_test = relationship("BloodTest", back_populates="features")
 
 
+class IngestionEvent(Base):
+    """Delivery intent committed in the same transaction as a blood test."""
+
+    __tablename__ = "ingestion_events"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    blood_test_id = Column(Integer, ForeignKey("blood_tests.id"), nullable=False, unique=True)
+    idempotency_key = Column(String(128), nullable=True, unique=True)
+    request_sha256 = Column(String(64), nullable=False)
+    created_at = Column(DateTime(timezone=True), default=datetime.utcnow, nullable=False)
+    published_at = Column(DateTime(timezone=True), nullable=True, index=True)
+
+
 class RiskScore(Base):
     __tablename__ = "risk_scores"
 

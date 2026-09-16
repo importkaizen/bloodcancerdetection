@@ -1,0 +1,11 @@
+.git
+.venv
+**/__pycache__
+.pytest_cache
+data
+runs
+work
+*.zip
+*.egg-info
+hemasight/frontend/react-dashboard/node_modules
+hemasight/frontend/react-dashboard/dist

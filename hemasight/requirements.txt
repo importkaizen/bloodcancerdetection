@@ -1,2 +1,2 @@
-# API and shared deps; full stack in pyproject.toml
--r pyproject.toml
+# Run from the repository root: pip install -r hemasight/requirements.txt
+-e .

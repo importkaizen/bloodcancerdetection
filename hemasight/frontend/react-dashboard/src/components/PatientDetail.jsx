@@ -12,36 +12,50 @@ import {
 } from 'recharts';
 import { getPatientBloodTests, getPatientRiskScores } from '../api/client';
 
+const METRICS = {
+  WBC: 'WBC (K/µL)', RBC: 'RBC (M/µL)', Platelets: 'Platelets (K/µL)',
+  Hemoglobin: 'Hemoglobin (g/dL)', Lymphocytes: 'Lymphocytes (%)',
+};
+
 function formatDate(d) {
-  return new Date(d).toLocaleDateString();
+  if (typeof d === 'number') return new Date(d).toISOString().slice(0, 10);
+  return d ? d.slice(0, 10) : 'Unknown date';
 }
 
 export function PatientDetail() {
   const { patientId } = useParams();
+  return <PatientView key={patientId} patientId={patientId} />;
+}
+
+function PatientView({ patientId }) {
   const [bloodTests, setBloodTests] = useState([]);
   const [riskScores, setRiskScores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [metric, setMetric] = useState('WBC');
 
   useEffect(() => {
     if (!patientId) return;
+    const controller = new AbortController();
     Promise.all([
-      getPatientBloodTests(patientId),
-      getPatientRiskScores(patientId),
+      getPatientBloodTests(patientId, controller.signal),
+      getPatientRiskScores(patientId, controller.signal),
     ])
       .then(([bt, rs]) => {
+        if (controller.signal.aborted) return;
         setBloodTests(bt);
         setRiskScores(rs);
       })
-      .catch((e) => setError(e.message))
-      .finally(() => setLoading(false));
+      .catch((e) => { if (!controller.signal.aborted) setError(e.message); })
+      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
   }, [patientId]);
 
   if (loading) return <p>Loading…</p>;
   if (error) return <p>Error: {error}</p>;
 
   const bloodChartData = bloodTests.map((t) => ({
-    date: formatDate(t.date),
+    date: Date.parse(`${t.date.slice(0, 10)}T00:00:00Z`),
     full: t.date,
     WBC: t.wbc,
     RBC: t.rbc,
@@ -50,8 +64,9 @@ export function PatientDetail() {
     Lymphocytes: t.lymphocytes,
   }));
 
-  const riskChartData = riskScores.map((r) => ({
-    date: formatDate(r.computed_at),
+  const datedScores = riskScores.filter((r) => r.blood_test_date);
+  const riskChartData = datedScores.map((r) => ({
+    date: Date.parse(`${r.blood_test_date.slice(0, 10)}T00:00:00Z`),
     score: r.score,
     level: r.level,
   }));
@@ -63,18 +78,21 @@ export function PatientDetail() {
 
       <section className="chart-section">
         <h3>Blood metrics over time</h3>
+        <div className="metric-picker">
+          <label htmlFor="blood-metric">Measurement</label>
+          <select id="blood-metric" value={metric} onChange={(e) => setMetric(e.target.value)}>
+            {Object.entries(METRICS).map(([key, label]) => <option key={key} value={key}>{label}</option>)}
+          </select>
+        </div>
         {bloodChartData.length > 0 ? (
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={bloodChartData} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
+              <XAxis dataKey="date" type="number" scale="time" domain={['dataMin', 'dataMax']} tickFormatter={formatDate} minTickGap={30} />
               <YAxis />
-              <Tooltip />
+              <Tooltip labelFormatter={formatDate} />
               <Legend />
-              <Line type="monotone" dataKey="WBC" stroke="#8884d8" name="WBC" />
-              <Line type="monotone" dataKey="Platelets" stroke="#82ca9d" name="Platelets" />
-              <Line type="monotone" dataKey="Hemoglobin" stroke="#ffc658" name="Hemoglobin" />
-              <Line type="monotone" dataKey="Lymphocytes" stroke="#ff7c7c" name="Lymphocytes" />
+              <Line type="linear" dataKey={metric} stroke="#155b88" strokeWidth={2} name={METRICS[metric]} connectNulls={false} />
             </LineChart>
           </ResponsiveContainer>
         ) : (
@@ -83,28 +101,30 @@ export function PatientDetail() {
       </section>
 
       <section className="chart-section">
-        <h3>Risk score over time</h3>
+        <h3>Experimental score by blood-test date</h3>
         {riskChartData.length > 0 ? (
           <ResponsiveContainer width="100%" height={260}>
             <LineChart data={riskChartData} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" />
+              <XAxis dataKey="date" type="number" scale="time" domain={['dataMin', 'dataMax']} tickFormatter={formatDate} minTickGap={30} />
               <YAxis domain={[0, 1]} />
-              <Tooltip />
+              <Tooltip labelFormatter={formatDate} />
               <Legend />
-              <Line type="monotone" dataKey="score" stroke="#8884d8" name="Risk score" />
+              <Line type="linear" dataKey="score" stroke="#155b88" strokeWidth={2} name="Experimental score" />
             </LineChart>
           </ResponsiveContainer>
         ) : (
-          <p>No risk scores yet. Train the model and process blood tests to see risk trend.</p>
+          <p>No dated model outputs are available for this patient.</p>
         )}
+        {datedScores.length < riskScores.length && <p>Some older outputs have no linked blood-test date and are omitted from the timeline.</p>}
       </section>
 
-      {riskScores.length > 0 && (
+      {datedScores.length > 0 && (
         <section>
-          <h3>Latest risk</h3>
-          <p><strong>Level:</strong> {riskScores[riskScores.length - 1].level}</p>
-          <p><strong>Message:</strong> {riskScores[riskScores.length - 1].message}</p>
+          <h3>Latest dated model output</h3>
+          <p><strong>Blood-test date:</strong> {formatDate(datedScores[datedScores.length - 1].blood_test_date)}</p>
+          <p><strong>Experimental level:</strong> {datedScores[datedScores.length - 1].level}</p>
+          <p><strong>Model:</strong> {datedScores[datedScores.length - 1].model_version}</p>
         </section>
       )}
     </div>
